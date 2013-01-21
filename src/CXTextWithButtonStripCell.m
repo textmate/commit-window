@@ -185,13 +185,22 @@
     origPoint	= [controlView convertPoint:[theEvent locationInWindow] fromView:nil];
 	curPoint	= origPoint;
 
+	NSUInteger	initialButton = [self buttonIndexAtPoint:[controlView convertPoint:[theEvent locationInWindow] fromView:nil]
+						inRect:cellFrame
+						ofView:controlView];
+
     for (;;)
 	{
 		NSMenu *	menu;
 		NSUInteger	hitButton = [self buttonIndexAtPoint:[controlView convertPoint:[theEvent locationInWindow] fromView:nil]
 							inRect:cellFrame
 							ofView:controlView];
-		
+
+		// If we are above another button than what user initially
+		// pressed, then ignore that button
+		if ( hitButton != initialButton )
+			hitButton = NSNotFound;
+
 		// Mouse up --> invoke the appropriate invocation, if any
         if ([theEvent type] == NSLeftMouseUp)
 		{

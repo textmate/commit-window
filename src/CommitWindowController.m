@@ -79,11 +79,15 @@
 	BOOL	chosen = YES;
 
 	// Deselect external commits and files not added by default
+	// If there is a file browser selection (TM_SELECTED_FILES)
+	// then we assume all files given to commit window are selected
+	// by the user (in the file browser) and therefor include them
+	// for commit.
 	// We intentionally do not deselect file conflicts by default
 	// -- those are most likely to be a problem.
 
 	if(	[status hasPrefix:@"X"]
-	 ||	[status hasPrefix:@"?"])
+	 ||	[status hasPrefix:@"?"] && !getenv("TM_SELECTED_FILES") )
 	{
 		chosen = NO;
 	}

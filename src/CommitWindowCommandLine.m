@@ -290,6 +290,10 @@
 		// Success, send the diff to TextMate
 		arguments = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%s/bin/mate", getenv("TM_SUPPORT_PATH")], @"-a", nil];
 		
+		// Skip if we are running outside TextMate (e.g. testing)
+		if( !getenv("TM_SUPPORT_PATH") )
+			return;
+
 		exitStatus = [NSTask executeTaskWithArguments:arguments
 			    					input:diffData
 			                        outputData:nil

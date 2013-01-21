@@ -163,6 +163,18 @@
 	return YES;
 }
 
+- (NSUInteger)hitTestForEvent:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView
+{
+	NSUInteger	hitButton = [self buttonIndexAtPoint:[controlView convertPoint:[theEvent locationInWindow] fromView:nil]
+						inRect:cellFrame
+						ofView:controlView];
+
+	if(hitButton != NSNotFound)
+		return NSCellHitTrackableArea;
+
+	return [super hitTestForEvent:theEvent inRect:cellFrame ofView:controlView];
+}
+
 - (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView untilMouseUp:(BOOL)flag
 {
 	NSPoint origPoint;

@@ -1,0 +1,4 @@
+SOURCES       = src/*.m
+CP_Resources  = resources/*
+FRAMEWORKS    = Cocoa
+OBJC_FLAGS   += -fno-objc-arc

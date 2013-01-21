@@ -123,7 +123,7 @@
 		NSScrollView *	scrollView		= [self enclosingScrollView];
 		NSRect			scrollFrame		= [scrollView frame];
 		NSRect			newFrame		= scrollFrame;
-		float			deltaY;
+		CGFloat			deltaY;
 		
 		// Horizontal
 		if( fAllowGrowHorizontally )
@@ -222,42 +222,42 @@
 
 // Geometry
 
-- (float)maxWidth
+- (CGFloat)maxWidth
 {
 	return fMaxWidth;
 }
 
-- (void)setMaxWidth:(float)newMaxWidth
+- (void)setMaxWidth:(CGFloat)newMaxWidth
 {
 	fMaxWidth = newMaxWidth;
 }
 
-- (float)minWidth
+- (CGFloat)minWidth
 {
 	return fMinWidth;
 }
 
-- (void)setMinWidth:(float)newMinWidth
+- (void)setMinWidth:(CGFloat)newMinWidth
 {
 	fMinWidth = newMinWidth;
 }
 
-- (float)minHeight
+- (CGFloat)minHeight
 {
 	return fMinHeight;
 }
 
-- (void)setMinHeight:(float)newMinHeight
+- (void)setMinHeight:(CGFloat)newMinHeight
 {
 	fMinHeight = newMinHeight;
 }
 
-- (float)maxHeight
+- (CGFloat)maxHeight
 {
 	return fMaxHeight;
 }
 
-- (void)setMaxHeight:(float)newMaxHeight
+- (void)setMaxHeight:(CGFloat)newMaxHeight
 {
 	fMaxHeight = newMaxHeight;
 }

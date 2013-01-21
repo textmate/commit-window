@@ -18,7 +18,7 @@
 
 #include <ApplicationServices/ApplicationServices.h>
 
- // delegate for shading function - (void) shade:(float)alpha toColor:(float *)outColor
+ // delegate for shading function - (void) shade:(CGFloat)alpha toColor:(CGFloat *)outColor
 typedef struct
 {
 	id				target;
@@ -34,8 +34,8 @@ typedef struct
 
 	struct
 	{
-		float				from[4];
-		float				to[4];
+		CGFloat			from[4];
+		CGFloat			to[4];
 	} fColors;
 }
 

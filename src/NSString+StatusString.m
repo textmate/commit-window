@@ -92,7 +92,7 @@ static inline void ColorsFromStatus( NSString * status, NSColor ** foreColor, NS
 {
 	UInt32						length = [self length];
 	NSMutableAttributedString *	attributedStatusString = [[[NSMutableAttributedString alloc] init] autorelease];
-	unsigned int				i;
+	NSUInteger					i;
 	unichar						emSpace		= 0x2003;
 	unichar						hairSpace	= 0x200A;
 	NSAttributedString *		spaceString	= [[[NSAttributedString alloc] initWithString:@" " attributes:nil] autorelease];
@@ -121,13 +121,13 @@ static inline void ColorsFromStatus( NSString * status, NSColor ** foreColor, NS
 
 		attributedCharString = [[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%C%@%C", hairSpace, charString, hairSpace] attributes:attributes] autorelease];
 		
-		float width = [attributedCharString size].width;
-		float desiredWidth = 13.0f;
+		CGFloat width = [attributedCharString size].width;
+		CGFloat desiredWidth = 13.0f;
 		if(width < desiredWidth)
 		{
-			float hairSpaceWidth = [[[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%C", hairSpace] attributes:attributes] autorelease] size].width;
-			float extraWidth = 0.5f * (desiredWidth - width) + hairSpaceWidth;
-			float scale = logf(extraWidth - (hairSpaceWidth - 1.0f));
+			CGFloat hairSpaceWidth = [[[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%C", hairSpace] attributes:attributes] autorelease] size].width;
+			CGFloat extraWidth = 0.5f * (desiredWidth - width) + hairSpaceWidth;
+			CGFloat scale = logf(extraWidth - (hairSpaceWidth - 1.0f));
 
 			NSMutableDictionary* dict = [NSMutableDictionary dictionary];
 			[dict setObject:[NSNumber numberWithFloat:scale] forKey:NSExpansionAttributeName];

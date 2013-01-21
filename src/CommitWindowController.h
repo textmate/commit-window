@@ -11,7 +11,7 @@
 @class CWTextView;
 @class CXMenuButton;
 
-@interface CommitWindowController : NSWindowController
+@interface CommitWindowController : NSWindowController <NSMenuDelegate>
 {
 //	NSMutableArray *	fFiles;		// {@"commit", @"path"}
 	IBOutlet NSArrayController *	fFilesController;

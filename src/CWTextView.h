@@ -12,10 +12,10 @@
 
 @interface CWTextView : NSTextView
 {
-	float	fMinHeight;
-	float	fMaxHeight;
-	float	fMinWidth;
-	float	fMaxWidth;
+	CGFloat	fMinHeight;
+	CGFloat	fMaxHeight;
+	CGFloat	fMinWidth;
+	CGFloat	fMaxWidth;
 	
 	NSRect	fInitialViewFrame;
 	NSPoint	fInitialMousePoint;
@@ -31,16 +31,16 @@
 - (BOOL)allowVerticalResize;
 - (void)setAllowVerticalResize:(BOOL)newAllowGrowVertically;
 
-- (float)maxWidth;
-- (void)setMaxWidth:(float)newMaxWidth;
+- (CGFloat)maxWidth;
+- (void)setMaxWidth:(CGFloat)newMaxWidth;
 
-- (float)minWidth;
-- (void)setMinWidth:(float)newMinWidth;
+- (CGFloat)minWidth;
+- (void)setMinWidth:(CGFloat)newMinWidth;
 
-- (float)minHeight;
-- (void)setMinHeight:(float)newMinHeight;
+- (CGFloat)minHeight;
+- (void)setMinHeight:(CGFloat)newMinHeight;
 
-- (float)maxHeight;
-- (void)setMaxHeight:(float)newMaxHeight;
+- (CGFloat)maxHeight;
+- (void)setMaxHeight:(CGFloat)newMaxHeight;
 
 @end

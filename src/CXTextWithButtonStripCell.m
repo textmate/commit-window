@@ -26,7 +26,7 @@
 + (NSBezierPath*)bezierPathWithCapsuleRect:(NSRect)rect
 {
 	NSBezierPath	*	path = [self bezierPath];
-	float				radius = 0.5f * MIN(NSWidth(rect), NSHeight(rect));
+	CGFloat				radius = 0.5f * MIN(NSWidth(rect), NSHeight(rect));
 
 	rect = NSInsetRect(rect, radius, radius);
 
@@ -68,12 +68,12 @@
 - (void)calcButtonRects
 {
 	NSRect			buttonRect		= NSMakeRect(0,0,16,16);
-	unsigned int	buttonsCount	= [fButtons count];
-	float			currentX		= 0.0;
-	float 			currentButtonWidth;
-	NSString *		downwardTriangle = [NSString stringWithFormat:@" %C", 0x25BE];
+	NSUInteger		buttonsCount	= [fButtons count];
+	CGFloat			currentX		= 0.0;
+	CGFloat			currentButtonWidth;
+	NSString *		downwardTriangle = @" \u25BE";
 
-	for(unsigned int index = 0; index < buttonsCount; index += 1)
+	for(NSUInteger index = 0; index < buttonsCount; index += 1)
 	{
 		NSMutableDictionary *	buttonDefinition = [fButtons objectAtIndex:index];
 //		NSImage *				icon = [buttonDefinition objectForKey:@"icon"];
@@ -139,12 +139,12 @@
 #pragma mark Mouse tracking
 #endif
 
-- (UInt32) buttonIndexAtPoint:(NSPoint)point inRect:(NSRect)cellFrame ofView:(NSView *)controlView
+- (NSUInteger) buttonIndexAtPoint:(NSPoint)point inRect:(NSRect)cellFrame ofView:(NSView *)controlView
 {
-	UInt32			buttonIndexHit	= NSNotFound;
-	unsigned int	buttonsCount	= [fButtons count];
+	NSUInteger		buttonIndexHit	= NSNotFound;
+	NSUInteger		buttonsCount	= [fButtons count];
 	
-	for( unsigned int i = 0; i < buttonsCount; i += 1 )
+	for( NSUInteger i = 0; i < buttonsCount; i += 1 )
 	{
 		NSRect buttonRect = [self rectForButtonAtIndex:i inCellFrame:cellFrame];
 		
@@ -176,7 +176,7 @@
     for (;;)
 	{
 		NSMenu *	menu;
-		UInt32		hitButton = [self buttonIndexAtPoint:[controlView convertPoint:[theEvent locationInWindow] fromView:nil]
+		NSUInteger	hitButton = [self buttonIndexAtPoint:[controlView convertPoint:[theEvent locationInWindow] fromView:nil]
 							inRect:cellFrame
 							ofView:controlView];
 		
@@ -297,7 +297,7 @@
 		if( menu != nil )
 		{
 			NSRect			textRect = iconRect;
-			NSString *		downwardTriangle = [NSString stringWithFormat:@" %C", 0x25BE];
+			NSString *		downwardTriangle = @" \u25BE";
 			
 			textRect.origin.x += kIconButtonWidth;
 			[downwardTriangle drawInRect:textRect withAttributes:[self titleTextAttributes]];
@@ -386,9 +386,9 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-	unsigned int	buttonsCount	= [fButtons count];
+	NSUInteger		buttonsCount	= [fButtons count];
 	
-	for( unsigned int i = 0; i < buttonsCount; i += 1 )
+	for( NSUInteger i = 0; i < buttonsCount; i += 1 )
 	{
 		NSMutableDictionary *	buttonDefinition = [fButtons objectAtIndex:i];
 		NSRect					buttonRect = [self rectForButtonAtIndex:i inCellFrame:cellFrame];
@@ -432,13 +432,13 @@
 
 - (void)setButtonDefinitions:(NSArray *)newDefs
 {
-	unsigned int	buttonsCount = [newDefs count];
+	NSUInteger		buttonsCount = [newDefs count];
 	NSArray *		oldButtonDefinitions = fButtons;
 	
 	// Get mutable copies of the button definitions; we want to store additional data in them
 	fButtons = [[NSMutableArray alloc] init];
 
-	for(unsigned int index = 0; index < buttonsCount; index += 1)
+	for(NSUInteger index = 0; index < buttonsCount; index += 1)
 	{
 		NSDictionary *	button = [newDefs objectAtIndex:index];
 		

@@ -20,8 +20,8 @@
 @implementation CXShading
 
 static void ShadingFunction (void *			info, 
-                            const float *	in, 
-                            float *			out)
+                            const CGFloat *	in, 
+                            CGFloat *		out)
 {
 	_CXShadingDelegateMethod *	method = (_CXShadingDelegateMethod *) info;
 	
@@ -33,8 +33,8 @@ static void ShadingFunction (void *			info,
 - (CGFunctionRef) shadingFunctionForColorspace:(CGColorSpaceRef) colorspace info:(void *)info
 {
     size_t								components;
-    static const float					inputValueRange [2] = { 0, 1 };
-    static const float					outputValueRanges [8] = { 0, 1, 0, 1, 0, 1, 0, 1 };
+    static const CGFloat				inputValueRange [2] = { 0, 1 };
+    static const CGFloat				outputValueRanges [8] = { 0, 1, 0, 1, 0, 1, 0, 1 };
     static const CGFunctionCallbacks	callbacks = { 0, &ShadingFunction, NULL };
 
     components = 1 + CGColorSpaceGetNumberOfComponents (colorspace); 
@@ -108,14 +108,14 @@ static inline CGPoint CGPointFromNSPoint( NSPoint point )
 #pragma mark Simple linear gradient
 #endif
 
-static inline float LinearInterpolate(float from, float to, float alpha)
+static inline CGFloat LinearInterpolate(CGFloat from, CGFloat to, CGFloat alpha)
 {
 	return (((1.0f - alpha) * from) + (alpha * to));
 }
 
-- (void) linearInterpolationFunction:(const float *)alpha toColor:(float *)color
+- (void) linearInterpolationFunction:(const CGFloat *)alpha toColor:(CGFloat *)color
 {
-	float a = *alpha;
+	CGFloat a = *alpha;
 	
 	color[0] = LinearInterpolate( fColors.from[0], fColors.to[0], a );
 	color[1] = LinearInterpolate( fColors.from[1], fColors.to[1], a );

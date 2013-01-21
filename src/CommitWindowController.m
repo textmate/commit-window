@@ -242,11 +242,11 @@
 		NSRect			usableRect	= [screen visibleFrame];
 		NSRect			windowRect	= [fWindow frame];
 		NSTableView *	tableView	= [fPathColumn tableView];
-		float			rowHeight	= [tableView rowHeight] + [tableView intercellSpacing].height;
+		CGFloat			rowHeight	= [tableView rowHeight] + [tableView intercellSpacing].height;
 		int				rowCount	= [[fFilesController arrangedObjects] count];
-		float			idealVisibleHeight;
-		float			currentVisibleHeight;
-		float			deltaVisibleHeight;
+		CGFloat			idealVisibleHeight;
+		CGFloat			currentVisibleHeight;
+		CGFloat			deltaVisibleHeight;
 		
 		currentVisibleHeight	= [[tableView superview] frame].size.height;
 		idealVisibleHeight		= (rowHeight * rowCount) + [[tableView headerView] frame].size.height;
@@ -330,8 +330,8 @@
 		NSMenu *			menu = [[NSMenu alloc] initWithTitle:@kPreviousSummariesItemTitle];
 		NSMenuItem *		item;
 
-		int	summaryCount = [summaries count];
-		int	index;
+		NSInteger	summaryCount = [summaries count];
+		NSInteger	index;
 
 		// PopUp title
 		[menu addItemWithTitle:@kPreviousSummariesItemTitle action:@selector(restoreSummary:) keyEquivalent:@""];
@@ -350,7 +350,7 @@
 				itemName = [itemName substringToIndex:kDisplayCharsOfSummaryInMenuItemCount];
 				
 				// append ellipsis
-				itemName = [itemName stringByAppendingFormat: @"%C", 0x2026];
+				itemName = [itemName stringByAppendingString: @"\u2026"];
 			}
 
 			item = [menu addItemWithTitle:itemName action:@selector(restoreSummary:) keyEquivalent:@""];
@@ -398,7 +398,7 @@
 
 		if( oldSummaries != nil )
 		{
-			unsigned int	oldIndex;
+			NSUInteger	oldIndex;
 			
 			newSummaries = [oldSummaries mutableCopy];
 			
@@ -507,7 +507,7 @@
 	NSRect	currentSummaryFrame			= [fSummaryScrollView frame];
 	NSRect	currentLowerControlsFrame	= [fLowerControlsView frame];
 
-	float	deltaV = currentSummaryFrame.size.height - fPreviousSummaryFrame.size.height;
+	CGFloat	deltaV = currentSummaryFrame.size.height - fPreviousSummaryFrame.size.height;
 	
 	[fLowerControlsView setNeedsDisplayInRect:[fLowerControlsView bounds]];
 	
@@ -629,9 +629,9 @@
 	NSArray *		keys = [fActionCommands allKeys];
 	NSString *		fileStatus	= [[[fFilesController arrangedObjects] objectAtIndex:[fTableView selectedRow]] objectForKey:@"status"];
 
-	unsigned int	possibleStatusCount = [keys count];
+	NSUInteger		possibleStatusCount = [keys count];
 
-	for(unsigned int index = 0; index < possibleStatusCount; index += 1)
+	for(NSUInteger index = 0; index < possibleStatusCount; index += 1)
 	{
 		NSString *	possibleStatus = [keys objectAtIndex:index];
 
@@ -639,9 +639,9 @@
 		{	
 			// Add all the commands we find for this status
 			NSArray *		commands		= [fActionCommands objectForKey:possibleStatus];
-			unsigned int	commandCount	= [commands count];
+			NSUInteger		commandCount	= [commands count];
 
-			for(unsigned int arrayOfCommandsIndex = 0; arrayOfCommandsIndex < commandCount; arrayOfCommandsIndex += 1)
+			for(NSUInteger arrayOfCommandsIndex = 0; arrayOfCommandsIndex < commandCount; arrayOfCommandsIndex += 1)
 			{
 				NSArray *	commandArguments = [commands objectAtIndex:arrayOfCommandsIndex];
 

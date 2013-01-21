@@ -154,10 +154,10 @@
 			statusSubstrings	= [statusSubstringString componentsSeparatedByString:@","];
 			commandArguments	= [commandArgumentString componentsSeparatedByString:@","];
 			
-			unsigned int	statusSubstringCount = [statusSubstrings count];
+			NSUInteger		statusSubstringCount = [statusSubstrings count];
 			
 			// Add the command to each substring
-			for(unsigned int index = 0; index < statusSubstringCount; index += 1)
+			for(NSUInteger index = 0; index < statusSubstringCount; index += 1)
 			{
 				NSString *	statusSubstring = [statusSubstrings objectAtIndex:index];
 
